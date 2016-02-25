@@ -3,8 +3,8 @@ module SlackErrorNotifier
     attr_reader :slack_token, :target_channel
 
     def initialize
-      @slack_token = ErrorNotifier.access_token
-      @target_channel = ErrorNotifier.target_channel
+      @slack_token = SlackErrorNotifier.access_token
+      @target_channel = SlackErrorNotifier.target_channel
       configure_slack_client
       check_authentication
       check_target_channel_validity

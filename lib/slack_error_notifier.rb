@@ -1,8 +1,10 @@
-require "slack_error_notifier/version"
+require 'slack-ruby-client'
 
-require_relative 'helpers/configuration'
-require_relative 'slack_configuration'
-require_relative 'slack_notification'
+require "slack_error_notifier/version"
+require "slack_error_notifier/helpers/configuration"
+require "slack_error_notifier/slack_configuration"
+require "slack_error_notifier/slack_notification"
+
 
 module SlackErrorNotifier
   extend Configuration
@@ -17,6 +19,7 @@ module SlackErrorNotifier
     configure_slack_client
     yield
   rescue => error
+    puts "Encountered #{error}. Sending Notification to #{target_channel}."
     send_notification(error)
   end
 
