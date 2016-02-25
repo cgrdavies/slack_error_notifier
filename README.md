@@ -1,8 +1,6 @@
-# SlackErrorNotifier
+# Slack Error Notifier
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/slack_error_notifier`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Simple Slack exception notification for Ruby scripts. Just wrap your code in `SlackErrorNotifier.with_notifications {}` and off you go. 
 
 ## Installation
 
@@ -22,17 +20,31 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Configuration
 
-## Development
+```ruby
+SlackErrorNotifier.configuration do |config|
+  config.app_name = <THE NAME OF YOUR APP OR SCRIPT>
+  config.access_token = <YOUR SLACK TOKEN>
+  config.target_channel = <THE CHANNEL OR USER TO POST MESSAGES TO> # include '@' or '#' as applicable
+  confg.send_as_user = <TRUE/FALSE> # whether you want to send as slackbot or the user whose token you're using.   
+end
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### Catching Exceptions in Your Code
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+SlackErrorNotifier.with_notifications do 
+  # Commence dangerous operations here!
+  NuclearLaunchCode.run!
+end
+```
+
+Your target user or channel will then be notified of any unhandled exceptions that occur during the dangerous operation. 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/slack_error_notifier. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/cgrdavies/slack_error_notifier. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
