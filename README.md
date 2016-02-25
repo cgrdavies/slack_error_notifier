@@ -31,6 +31,8 @@ SlackErrorNotifier.configuration do |config|
 end
 ```
 
+Pro-tip: Add a slackbot to your Slack organization and then use its API Token. You can then configure the avatar and username you want messages to come from. 
+
 ### Catching Exceptions in Your Code
 
 ```ruby
