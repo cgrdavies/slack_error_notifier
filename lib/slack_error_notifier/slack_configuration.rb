@@ -37,7 +37,7 @@ module SlackErrorNotifier
 
     def check_channel_exists
       channels = slack_client.channels_list.channels
-      matching_channel = channels.detect { |c| c.name == target_channel.gsub('#', '') }
+      channels.detect { |c| c.name == target_channel.gsub('#', '') }
     end
 
     def configure_slack_client
