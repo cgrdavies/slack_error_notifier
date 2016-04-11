@@ -13,7 +13,7 @@ module SlackErrorNotifier
         channel: target_channel,
         text: "",
         attachments: attachments,
-        as_user: true
+        as_user: send_as_user
       )
     end
 
