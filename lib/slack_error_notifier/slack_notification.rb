@@ -48,7 +48,7 @@ module SlackErrorNotifier
     end
 
     def assemble_text_body
-      "#{Time.new.strftime("At %I:%M%p")}, an error occurred with the following stack trace: ```#{@error.backtrace.join("\n")}```"
+      "#{Time.new.strftime("At %I:%M%p")}, an error occurred: `#{@error.inspect}` with the following stack trace: ```#{@error.backtrace.join("\n\t")}```"
     end
 
     def app_name
